@@ -4,10 +4,13 @@ import './LoginSignup.css'
 import userNameImg from '../images/userName.png'
 import emailImg from '../images/email.png'
 import passwordImg from '../images/password.png'
+import showImg from '../images/show.png'
+import hideImg from '../images/hide.png'
   
 function LoginSignup() {
 
   const [action, setAction] = useState('Sign up')
+  const [toggleImg, setToggleImg] = useState(hideImg)
 
   return (
     <>
@@ -27,11 +30,16 @@ function LoginSignup() {
           }
           <div className="input">
             <img src={emailImg} />
-            <input type="email" placeholder='Email'/>
+            <input type="email" placeholder='Email' required/>
           </div>
           <div className="input">
             <img src={passwordImg} />
-            <input type="password" placeholder='Password'/>
+            <input type="password" placeholder='Password' required  />
+            <img className="toggle-visibility" onClick={() => {toggleImg === hideImg 
+              ? setToggleImg(showImg) 
+              : setToggleImg(hideImg)}} 
+              src={toggleImg === hideImg ? showImg : hideImg}
+            />
           </div>
         </div>
 
@@ -39,7 +47,7 @@ function LoginSignup() {
           ? null 
           : <div className="forgot-password">
               Forgot password? 
-              <span>Click here</span>
+              <span> Click here</span>
             </div>
         }
 
